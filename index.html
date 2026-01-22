@@ -5,8 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Web Kelas - Bisnis Digital 2025</title>
 
-<!-- Di head section -->
-    <script type="module" src="firebase-config.js"></script>
+  <!-- Firebase Config -->
+  <script type="module" src="firebase-config.js"></script>
 
   <link rel="stylesheet" href="style.css">
 </head>
@@ -34,6 +34,119 @@
     <h1>Bisnis Digital 2025</h1>
     <div class="header-info">
       <p class="faculty">Fakultas Ekonomi dan Bisnis</p>
+      <p class="university">Universitas Muhammadiyah Sidenreng Rappang</p>
+    </div>
+    <p class="tagline">Satu kelas, banyak cerita</p>
+
+    <!-- Instagram Links -->
+    <div class="social-links">
+      <a href="https://instagram.com/bisnisdigital25.__" target="_blank" class="social-card">
+        <div class="social-icon">📱</div>
+        <div class="social-info">
+          <div class="social-label">Bisnis Digital 2025</div>
+          <div class="social-username">@bisnisdigital25__</div>
+        </div>
+      </a>
+
+      <a href="https://instagram.com/bisnisdigital.umsr" target="_blank" class="social-card">
+        <div class="social-icon">🎓</div>
+        <div class="social-info">
+          <div class="social-label">Prodi Bisnis Digital</div>
+          <div class="social-username">@bisnisdigital.umsr</div>
+        </div>
+      </a>
+
+      <a href="https://instagram.com/himabisdig.febumsr" target="_blank" class="social-card">
+        <div class="social-icon">👥</div>
+        <div class="social-info">
+          <div class="social-label">HIMA Bisnis Digital</div>
+          <div class="social-username">@himabisdig.febumsr</div>
+        </div>
+      </a>
+
+      <a href="https://instagram.com/umsrappang.id" target="_blank" class="social-card">
+        <div class="social-icon">🏛️</div>
+        <div class="social-info">
+          <div class="social-label">UMS Rappang</div>
+          <div class="social-username">@umsrappang.id</div>
+        </div>
+      </a>
+
+      <a href="https://instagram.com/ydiii_ee" target="_blank" class="social-card personal">
+        <div class="social-icon">✨</div>
+        <div class="social-info">
+          <div class="social-label">Developer</div>
+          <div class="social-username">@ydiii_ee</div>
+        </div>
+      </a>
+    </div>
+  </header>
+
+  <div class="divider"></div>
+
+  <!-- Deskripsi -->
+  <section id="deskripsi">
+    <h2>Deskripsi Kelas</h2>
+    <div class="card deskripsi">
+      Tempat belajar bisnis digital, adu ide, salah bareng, panik bareng pas deadline, lalu sok tenang pas presentasi. Satu kelas, banyak cerita, dan semoga mencapai impian dan lulus dengan gelar S.Bns.
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- Foto Terbaru -->
+  <section id="foto">
+    <h2>Foto & Video Terbaru</h2>
+    <div class="photo-grid" id="fotoTerbaruGrid">
+      <p style="text-align:center;padding:40px;color:#64748b;">Memuat foto...</p>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- Kenangan -->
+  <section id="kenangan">
+    <h2>Kenangan</h2>
+    <div class="kenangan-preview" id="kenanganPreview">
+      <p style="text-align:center;padding:40px;color:#64748b;">Memuat kenangan...</p>
+    </div>
+    <a href="Galeri.html" class="btn-lihat-semua">Lihat Semua Kenangan</a>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- Struktur Kelas -->
+  <section id="struktur" class="show">
+    <h2>Struktur Kelas</h2>
+    <div class="struktur-grid" id="strukturGrid">
+      <p style="text-align:center;padding:40px;color:#64748b;">Memuat struktur...</p>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    © 2026 Web Resmi BisDig25 | Dibuat pakai niat, bukan template
+  </footer>
+
+  <!-- Load Scripts - URUTAN PENTING! -->
+  <script>
+    // Fallback jika Data.js tidak ada
+    if (typeof DATA === 'undefined') {
+      console.warn('⚠️ Data.js belum dimuat, menggunakan data kosong');
+      window.DATA = {
+        galeri: [],
+        struktur: [],
+        jadwal: [],
+        tugas: [],
+        prestasi: []
+      };
+    }
+  </script>
+  <script src="Data.js"></script>
+  <script src="main.js"></script>
+  
+</body>
+</html>
       <p class="university">Universitas Muhammadiyah Sidenreng Rappang</p>
     </div>
     <p class="tagline">Satu kelas, banyak cerita</p>
