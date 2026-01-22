@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Galeri Kenangan - Bisnis Digital 2025</title>
+  
+  <!-- Di head section -->
+    <script type="module" src="firebase-config.js"></script>
+  
+  <link rel="stylesheet" href="galeri.css">
+</head>
+<body>
+
+  <!-- Header -->
+  <div class="header">
+    <a href="index.html" class="btn-back">← Kembali</a>
+    <h1>Galeri Kenangan</h1>
+    <p class="subtitle">Semua momen kebersamaan kita</p>
+  </div>
+
+  <!-- Filter Section -->
+  <div class="filter-section">
+    <div class="filter-tabs">
+      <div class="filter-tab active" onclick="filterGallery('all')">Semua</div>
+      <div class="filter-tab" onclick="filterGallery('kenangan')">💝 Kenangan</div>
+      <div class="filter-tab" onclick="filterGallery('foto-terbaru')">📸 Foto Terbaru</div>
+      <div class="filter-tab" onclick="filterGallery('prestasi')">🏆 Prestasi</div>
+      <div class="filter-tab" onclick="filterGallery('piknik')">🏕️ Piknik</div>
+      <div class="filter-tab" onclick="filterGallery('ulang-tahun')">🎂 Ulang Tahun</div>
+    </div>
+    <div class="counter">
+      📸 <span id="mediaCount">0</span> Media
+    </div>
+  </div>
+
+  <!-- Gallery Grid -->
+  <div class="gallery-grid" id="galleryGrid">
+    <!-- Media akan di-load dari DATA.js -->
+  </div>
+
+  <!-- Lightbox -->
+  <div class="lightbox" id="lightbox" onclick="closeLightbox(event)">
+    <div class="lightbox-content">
+      <button class="lightbox-close" onclick="closeLightbox()">✕</button>
+      <button class="lightbox-nav lightbox-prev" onclick="prevMedia(event)">‹</button>
+      <img id="lightboxImg" src="" alt="" style="display:none;">
+      <video id="lightboxVideo" src="" controls style="display:none;"></video>
+      <button class="lightbox-nav lightbox-next" onclick="nextMedia(event)">›</button>
+      <div class="lightbox-info">
+        <div id="lightboxTitle"></div>
+        <div id="lightboxCaption" style="color: #94a3b8; margin-top: 5px;"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    © 2026 Web Resmi BisDig25 | Dibuat pakai niat, bukan template
+  </footer>
+
+  <!-- Load Data & Scripts -->
+  <script src="Data.js"></script>
+  <script src="galeri.js"></script>
+
+</body>
+</html>

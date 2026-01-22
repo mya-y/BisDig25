@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Jadwal Kuliah - BD25</title>
+  
+  <!-- Di head section -->
+    <script type="module" src="firebase-config.js"></script>
+  
+  <link rel="stylesheet" href="jadwal.css">
+</head>
+<body>
+
+  <div class="container">
+    <!-- Header -->
+    <div class="header">
+      <a href="index.html" class="btn-back">← Kembali</a>
+      <div class="header-icon">📅</div>
+      <h1>Jadwal Kuliah</h1>
+      <p class="subtitle">Semester 3 - Bisnis Digital 2025</p>
+    </div>
+
+    <!-- Mode Toggle -->
+    <div class="mode-toggle">
+      <button class="mode-btn active" onclick="changeMode('regular')">📚 Jadwal Kuliah</button>
+      <button class="mode-btn" onclick="changeMode('uts')">📝 UTS</button>
+      <button class="mode-btn" onclick="changeMode('uas')">📖 UAS</button>
+    </div>
+
+    <!-- Day Tabs -->
+    <div class="day-tabs">
+      <div class="day-tab active" onclick="showDay('senin')">Senin</div>
+      <div class="day-tab" onclick="showDay('selasa')">Selasa</div>
+      <div class="day-tab" onclick="showDay('rabu')">Rabu</div>
+      <div class="day-tab" onclick="showDay('kamis')">Kamis</div>
+      <div class="day-tab" onclick="showDay('jumat')">Jumat</div>
+      <div class="day-tab" onclick="showDay('sabtu')">Sabtu</div>
+    </div>
+
+    <!-- Schedule Container -->
+    <div class="schedule-container" id="scheduleContainer">
+      <!-- Schedule akan di-load dari DATA.js -->
+    </div>
+  </div>
+
+  <footer>
+    © 2026 Web Resmi BisDig25 | Dibuat pakai niat, bukan template
+  </footer>
+
+  <!-- Load Data & Scripts -->
+  <script src="Data.js"></script>
+  <script src="jadwal.js"></script>
+
+</body>
+</html>

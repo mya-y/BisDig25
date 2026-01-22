@@ -1,0 +1,820 @@
+/* style.css - FIXED VERSION */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+  background: linear-gradient(180deg, #0f172a, #1e293b);
+  color: #e5e7eb;
+  line-height: 1.6;
+}
+
+/* Navigation */
+.nav-toggle {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  z-index: 1000;
+  background: #1e293b;
+  border: 1px solid #38bdf8;
+  color: white;
+  padding: 12px 16px;
+  border-radius: 50%;
+  cursor: pointer;
+  font-size: 24px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+  transition: transform 0.2s;
+}
+
+.nav-toggle:active {
+  transform: scale(0.95);
+}
+
+.nav-menu {
+  position: fixed;
+  top: 80px;
+  right: 20px;
+  z-index: 999;
+  background: #1e293b;
+  border: 1px solid #38bdf8;
+  border-radius: 15px;
+  padding: 15px;
+  min-width: 200px;
+  display: none;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.5);
+}
+
+.nav-menu.show {
+  display: block;
+}
+
+.nav-btn {
+  display: block;
+  width: 100%;
+  padding: 12px 15px;
+  margin-bottom: 8px;
+  background: transparent;
+  border: none;
+  color: #e5e7eb;
+  text-align: left;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.2s;
+  font-size: 15px;
+  text-decoration: none;
+}
+
+.nav-btn:active {
+  background: rgba(56, 189, 248, 0.3);
+}
+
+/* Header */
+header {
+  text-align: center;
+  padding: 100px 20px 80px;
+}
+
+/* Logo */
+.logo {
+  width: 140px;
+  height: 140px;
+  margin: 0 auto 25px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+  border: 4px solid rgba(56, 189, 248, 0.3);
+  box-shadow: 0 0 40px rgba(56, 189, 248, 0.5);
+}
+
+.logo-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.logo-text {
+  position: absolute;
+  font-size: 56px;
+  font-weight: bold;
+  background: linear-gradient(135deg, #38bdf8, #818cf8);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.logo::before {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, #38bdf8, #818cf8);
+  opacity: 0.1;
+  z-index: 1;
+}
+
+h1 {
+  font-size: 2.5em;
+  margin-bottom: 15px;
+  background: linear-gradient(135deg, #38bdf8, #818cf8);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.header-info {
+  margin-bottom: 10px;
+}
+
+.faculty {
+  color: #94a3b8;
+  font-size: 1em;
+  font-weight: 500;
+  margin-bottom: 5px;
+}
+
+.university {
+  color: #64748b;
+  font-size: 0.95em;
+  font-style: italic;
+}
+
+.tagline {
+  color: #94a3b8;
+  font-size: 1.1em;
+  margin-bottom: 40px;
+}
+
+/* Social Links */
+.social-links {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 15px;
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.social-card {
+  background: rgba(30, 41, 59, 0.8);
+  border: 2px solid rgba(56, 189, 248, 0.3);
+  border-radius: 12px;
+  padding: 15px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.social-card:hover {
+  transform: translateY(-5px);
+  border-color: #38bdf8;
+  box-shadow: 0 8px 25px rgba(56, 189, 248, 0.4);
+  background: rgba(30, 41, 59, 0.95);
+}
+
+.social-card.personal {
+  border-color: rgba(251, 191, 36, 0.4);
+}
+
+.social-card.personal:hover {
+  border-color: #fbbf24;
+  box-shadow: 0 8px 25px rgba(251, 191, 36, 0.4);
+}
+
+.social-icon {
+  font-size: 2em;
+  flex-shrink: 0;
+}
+
+.social-info {
+  text-align: left;
+  flex: 1;
+}
+
+.social-label {
+  color: #94a3b8;
+  font-size: 0.85em;
+  margin-bottom: 3px;
+}
+
+.social-username {
+  color: #38bdf8;
+  font-weight: 600;
+  font-size: 1em;
+}
+
+.social-card.personal .social-username {
+  color: #fbbf24;
+}
+
+/* Divider */
+.divider {
+  height: 2px;
+  background: linear-gradient(90deg, transparent, #38bdf8, transparent);
+  margin: 60px auto;
+  max-width: 80%;
+}
+
+/* Section */
+section {
+  padding: 60px 20px;
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.6s ease;
+}
+
+section.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* STRUKTUR SECTION - FIXED */
+section#struktur {
+  opacity: 1 !important;
+  transform: none !important;
+  min-height: 400px;
+}
+
+section#struktur.show {
+  opacity: 1 !important;
+  transform: none !important;
+}
+
+h2 {
+  text-align: center;
+  font-size: 2em;
+  margin-bottom: 40px;
+  color: #38bdf8;
+}
+
+/* Card */
+.card {
+  background: rgba(30, 41, 59, 0.8);
+  border: 1px solid rgba(56, 189, 248, 0.2);
+  border-radius: 15px;
+  padding: 0;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  overflow: hidden;
+}
+
+.card.active {
+  transform: translateY(-5px);
+  box-shadow: 0 0 20px rgba(56, 189, 248, 0.5);
+  border-color: #38bdf8;
+}
+
+/* Deskripsi */
+.deskripsi {
+  max-width: 700px;
+  margin: 0 auto;
+  text-align: center;
+  font-size: 1.15em;
+  padding: 30px;
+  line-height: 1.8;
+}
+
+/* Foto Grid */
+.photo-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 15px;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.photo-grid .media-item {
+  position: relative;
+}
+
+.photo-grid img,
+.photo-grid video {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 15px;
+}
+
+/* Kenangan */
+.kenangan-preview {
+  display: flex;
+  gap: 15px;
+  overflow-x: auto;
+  padding-bottom: 15px;
+  padding-left: 20px;
+  padding-right: 20px;
+  scrollbar-width: thin;
+  scrollbar-color: #38bdf8 #1e293b;
+}
+
+.kenangan-preview::-webkit-scrollbar {
+  height: 8px;
+}
+
+.kenangan-preview::-webkit-scrollbar-track {
+  background: #1e293b;
+  border-radius: 10px;
+}
+
+.kenangan-preview::-webkit-scrollbar-thumb {
+  background: #38bdf8;
+  border-radius: 10px;
+}
+
+.kenangan-preview .card {
+  flex-shrink: 0;
+  width: 260px;
+}
+
+.kenangan-preview img,
+.kenangan-preview video {
+  width: 260px;
+  height: 180px;
+  object-fit: cover;
+}
+
+/* ============================================
+   STRUKTUR KELAS - FIXED VERSION
+   ============================================ */
+.struktur-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 20px;
+  max-width: 800px;
+  margin: 30px auto;
+  padding: 0 20px;
+  opacity: 1 !important;
+  visibility: visible !important;
+}
+
+/* Anggota Card dengan animasi */
+.anggota-card {
+  background: rgba(30, 41, 59, 0.8);
+  border: 1px solid rgba(56, 189, 248, 0.2);
+  border-radius: 15px;
+  overflow: hidden;
+  transition: all 0.4s ease;
+  cursor: pointer;
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeInUp 0.6s ease forwards;
+}
+
+/* Animation delay berdasarkan urutan */
+.anggota-card:nth-child(1) { animation-delay: 0.1s; }
+.anggota-card:nth-child(2) { animation-delay: 0.2s; }
+.anggota-card:nth-child(3) { animation-delay: 0.3s; }
+.anggota-card:nth-child(4) { animation-delay: 0.4s; }
+.anggota-card:nth-child(5) { animation-delay: 0.5s; }
+.anggota-card:nth-child(6) { animation-delay: 0.6s; }
+.anggota-card:nth-child(7) { animation-delay: 0.7s; }
+.anggota-card:nth-child(8) { animation-delay: 0.8s; }
+.anggota-card:nth-child(9) { animation-delay: 0.9s; }
+.anggota-card:nth-child(10) { animation-delay: 1.0s; }
+
+.anggota-card:hover {
+  transform: translateY(-8px) !important;
+  border-color: #38bdf8;
+  box-shadow: 0 12px 30px rgba(56, 189, 248, 0.3);
+}
+
+.anggota-card img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  display: block;
+  border-bottom: 1px solid rgba(56, 189, 248, 0.1);
+  transition: transform 0.3s ease;
+}
+
+.anggota-card:hover img {
+  transform: scale(1.05);
+}
+
+.anggota-placeholder {
+  width: 100%;
+  height: 180px;
+  background: linear-gradient(135deg, #334155, #475569);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 3em;
+  font-weight: bold;
+  color: #94a3b8;
+  border-bottom: 1px solid rgba(56, 189, 248, 0.1);
+}
+
+.anggota-card h4 {
+  padding: 15px 10px 5px;
+  margin: 0;
+  color: #e5e7eb;
+  text-align: center;
+  font-size: 1em;
+  font-weight: 600;
+  transition: color 0.3s ease;
+}
+
+.anggota-card:hover h4 {
+  color: #38bdf8;
+}
+
+.anggota-card p {
+  padding: 0 10px 15px;
+  color: #94a3b8;
+  font-size: 0.85em;
+  margin: 0;
+  text-align: center;
+}
+
+/* Animations */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* Loading State */
+.loading-struktur {
+  text-align: center;
+  padding: 60px 20px;
+  color: #64748b;
+  grid-column: 1 / -1;
+}
+
+.loading-struktur .spinner {
+  width: 40px;
+  height: 40px;
+  border: 3px solid #e2e8f0;
+  border-top-color: #3b82f6;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin: 0 auto 15px;
+}
+
+/* Error & No Data States */
+.no-data {
+  text-align: center;
+  padding: 40px;
+  color: #64748b;
+  font-style: italic;
+  grid-column: 1 / -1;
+}
+
+.error {
+  text-align: center;
+  padding: 40px;
+  color: #ef4444;
+  grid-column: 1 / -1;
+}
+
+.btn-lihat-semua {
+  display: block;
+  margin: 30px auto 0;
+  padding: 15px 40px;
+  background: linear-gradient(135deg, #38bdf8, #818cf8);
+  color: white;
+  border: none;
+  border-radius: 10px;
+  font-size: 1.1em;
+  font-weight: bold;
+  cursor: pointer;
+  text-decoration: none;
+  transition: all 0.3s;
+  box-shadow: 0 4px 15px rgba(56, 189, 248, 0.3);
+  text-align: center;
+  max-width: 250px;
+}
+
+.btn-lihat-semua:active {
+  transform: scale(0.98);
+}
+
+.note {
+  text-align: center;
+  color: #64748b;
+  font-size: 0.9em;
+  margin-top: 20px;
+}
+
+/* Footer */
+footer {
+  text-align: center;
+  padding: 30px 20px;
+  color: #64748b;
+  font-size: 0.9em;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  margin-top: 60px;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .social-links {
+    grid-template-columns: 1fr;
+    max-width: 400px;
+  }
+  
+  .struktur-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+  }
+}
+
+@media (max-width: 640px) {
+  h1 {
+    font-size: 2em;
+  }
+
+  h2 {
+    font-size: 1.6em;
+  }
+
+  .photo-grid {
+    gap: 12px;
+  }
+
+  .struktur-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+    padding: 0 15px;
+  }
+  
+  .anggota-card img,
+  .anggota-placeholder {
+    height: 150px;
+  }
+  
+  .anggota-placeholder {
+    font-size: 2.5em;
+  }
+
+  .social-links {
+    padding: 0 10px;
+  }
+
+  .logo {
+    width: 120px;
+    height: 120px;
+  }
+
+  .logo-text {
+    font-size: 48px;
+  }
+}
+
+@media (max-width: 480px) {
+  .struktur-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  .anggota-card h4 {
+    font-size: 0.9em;
+    padding: 10px 5px 3px;
+  }
+  
+  .anggota-card p {
+    font-size: 0.8em;
+    padding: 0 5px 10px;
+  }
+}
+
+/* ============================================
+   FIX FOR RENDER ISSUES
+   ============================================ */
+
+/* Pastikan semua section visible */
+section {
+  opacity: 1 !important;
+  visibility: visible !important;
+  transform: none !important;
+}
+
+/* Fix untuk struktur yang sudah ada di CSS */
+#struktur {
+  min-height: 400px !important;
+}
+
+/* Class untuk foto di struktur */
+.anggota-foto {
+  width: 100%;
+  height: 180px;
+  background: linear-gradient(135deg, #334155, #475569);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  border-bottom: 1px solid rgba(56, 189, 248, 0.1);
+}
+
+.anggota-foto img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.initial-placeholder {
+  font-size: 3em;
+  color: #94a3b8;
+  font-weight: bold;
+}
+
+.anggota-info {
+  padding: 15px 10px;
+  text-align: center;
+}
+
+.anggota-info h4 {
+  margin: 0 0 5px 0;
+  color: #e5e7eb;
+  font-size: 1em;
+}
+
+.anggota-info p {
+  margin: 0;
+  color: #94a3b8;
+  font-size: 0.85em;
+}
+
+/* See more card */
+.see-more {
+  background: rgba(56, 189, 248, 0.1) !important;
+  border: 2px dashed #38bdf8 !important;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.see-more .initial-placeholder {
+  font-size: 2.5em;
+  color: #38bdf8;
+  margin-bottom: 10px;
+}
+
+/* Foto terbaru */
+.photo-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 20px;
+  max-width: 800px;
+  margin: 30px auto;
+  padding: 0 20px;
+}
+
+.photo-card {
+  background: rgba(30, 41, 59, 0.8);
+  border: 1px solid rgba(56, 189, 248, 0.2);
+  border-radius: 12px;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+.photo-card:hover {
+  transform: translateY(-5px);
+  border-color: #38bdf8;
+  box-shadow: 0 10px 25px rgba(56, 189, 248, 0.3);
+}
+
+.photo-img {
+  height: 150px;
+  overflow: hidden;
+}
+
+.photo-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.photo-card:hover .photo-img img {
+  transform: scale(1.05);
+}
+
+.photo-info {
+  padding: 15px;
+  text-align: center;
+}
+
+.photo-info p {
+  margin: 0 0 5px 0;
+  color: #e5e7eb;
+  font-size: 1em;
+}
+
+.photo-info small {
+  color: #94a3b8;
+  font-size: 0.85em;
+}
+
+/* Kenangan */
+.kenangan-preview {
+  display: flex;
+  gap: 20px;
+  overflow-x: auto;
+  padding: 20px;
+  scrollbar-width: thin;
+  scrollbar-color: #38bdf8 #1e293b;
+}
+
+.kenangan-item {
+  min-width: 250px;
+  background: rgba(30, 41, 59, 0.8);
+  border: 1px solid rgba(56, 189, 248, 0.2);
+  border-radius: 12px;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+.kenangan-media {
+  height: 160px;
+  overflow: hidden;
+  position: relative;
+}
+
+.kenangan-media img,
+.kenangan-media video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.video-badge {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: rgba(0, 0, 0, 0.7);
+  color: white;
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 12px;
+}
+
+.kenangan-info {
+  padding: 15px;
+}
+
+.kenangan-info h4 {
+  margin: 0 0 8px 0;
+  color: #e5e7eb;
+  font-size: 1em;
+}
+
+.kenangan-info p {
+  margin: 0;
+  color: #94a3b8;
+  font-size: 0.85em;
+}
+
+/* Mobile responsive */
+@media (max-width: 768px) {
+  .photo-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+    padding: 0 15px;
+  }
+  
+  .kenangan-item {
+    min-width: 220px;
+  }
+  
+  .anggota-foto {
+    height: 150px;
+  }
+  
+  .initial-placeholder {
+    font-size: 2.5em;
+  }
+}
+
+@media (max-width: 480px) {
+  .photo-grid {
+    grid-template-columns: 1fr;
+    max-width: 300px;
+  }
+  
+  .kenangan-item {
+    min-width: 280px;
+  }
+  
+  .struktur-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+}

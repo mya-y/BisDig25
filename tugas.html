@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kumpul Tugas - BD25</title>
+  
+  <!-- Di head section -->
+    <script type="module" src="firebase-config.js"></script>
+  
+  <link rel="stylesheet" href="tugas.css">
+</head>
+<body>
+
+  <div class="container">
+    <!-- Header -->
+    <div class="header">
+      <a href="index.html" class="btn-back">← Kembali</a>
+      <div class="header-icon">📂</div>
+      <h1>Kumpul Tugas</h1>
+      <p class="subtitle">Link Google Drive untuk kumpul tugas mata kuliah</p>
+    </div>
+
+    <!-- Filter Tabs -->
+    <div class="filter-tabs">
+      <div class="filter-tab active" onclick="filterTugas('all')">Semua</div>
+      <div class="filter-tab" onclick="filterTugas('open')">📂 Dibuka</div>
+      <div class="filter-tab" onclick="filterTugas('closed')">🔒 Ditutup</div>
+    </div>
+
+    <!-- Tugas Grid -->
+    <div class="tugas-grid" id="tugasGrid">
+      <!-- Tugas akan di-load dari DATA.js -->
+    </div>
+  </div>
+
+  <footer>
+    © 2026 Web Resmi BisDig25 | Dibuat pakai niat, bukan template
+  </footer>
+
+  <!-- Load Data & Scripts -->
+  <script src="Data.js"></script>
+  <script src="tugas.js"></script>
+
+</body>
+</html>

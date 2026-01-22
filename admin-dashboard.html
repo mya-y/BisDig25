@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Dashboard - BD25</title>
+  <link rel="stylesheet" href="admin-dashboard.css">
+  <script type="module" src="firebase-config.js"></script>
+</head>
+<body>
+  
+  <!-- Auth Check -->
+  <script>
+    if (localStorage.getItem('admin_auth') !== 'true') {
+      window.location.href = 'admin.html';
+    }
+  </script>
+
+  <!-- SIDEBAR -->
+  <div class="sidebar" id="sidebar">
+    <div class="sidebar-header">
+      <h2>🔥 BD25 Admin</h2>
+      <p>Bisnis Digital 2025</p>
+    </div>
+    
+    <div class="nav-menu">
+      <div class="nav-item active" data-section="dashboard">
+        <span class="nav-icon">📊</span>
+        <span class="nav-text">Dashboard</span>
+      </div>
+      
+      <div class="nav-item" data-section="galeri">
+        <span class="nav-icon">📸</span>
+        <span class="nav-text">Galeri</span>
+      </div>
+      
+      <div class="nav-item" data-section="jadwal">
+        <span class="nav-icon">📅</span>
+        <span class="nav-text">Jadwal</span>
+      </div>
+      
+      <div class="nav-item" data-section="tugas">
+        <span class="nav-icon">📂</span>
+        <span class="nav-text">Tugas</span>
+      </div>
+      
+      <div class="nav-item" data-section="prestasi">
+        <span class="nav-icon">🏆</span>
+        <span class="nav-text">Prestasi</span>
+      </div>
+      
+      <div class="nav-item" data-section="struktur">
+        <span class="nav-icon">👥</span>
+        <span class="nav-text">Struktur</span>
+      </div>
+      
+      <div class="nav-item" data-section="generate">
+        <span class="nav-icon">⚙️</span>
+        <span class="nav-text">Generate Data</span>
+      </div>
+    </div>
+    
+    <button class="logout-btn" onclick="logout()">
+      <span>🚪</span>
+      <span>Keluar</span>
+    </button>
+  </div>
+
+  <!-- MAIN CONTENT -->
+  <div class="main-content">
+    <!-- Menu Toggle untuk Mobile -->
+    <div class="menu-toggle" onclick="toggleSidebar()">
+      ☰
+    </div>
+    
+    <!-- DASHBOARD SECTION -->
+    <section id="dashboard-section" class="content-section">
+      <div class="header">
+        <h1>📊 Dashboard Admin</h1>
+        <p>Kelola data website Bisnis Digital 2025</p>
+      </div>
+      
+      <!-- Stats Grid -->
+      <div class="stats-grid">
+        <div class="stat-card">
+          <div class="stat-icon">📸</div>
+          <div class="stat-title">Total Foto/Video</div>
+          <div class="stat-value" id="stat-galeri">0</div>
+          <div class="stat-change" id="stat-galeri-change">+0 hari ini</div>
+        </div>
+        
+        <div class="stat-card">
+          <div class="stat-icon">📅</div>
+          <div class="stat-title">Jadwal Kuliah</div>
+          <div class="stat-value" id="stat-jadwal">0</div>
+          <div class="stat-change" id="stat-jadwal-change">UTS: 0, UAS: 0</div>
+        </div>
+        
+        <div class="stat-card">
+          <div class="stat-icon">📂</div>
+          <div class="stat-title">Tugas Aktif</div>
+          <div class="stat-value" id="stat-tugas">0</div>
+          <div class="stat-change" id="stat-tugas-change">Dibuka: 0, Ditutup: 0</div>
+        </div>
+        
+        <div class="stat-card">
+          <div class="stat-icon">🏆</div>
+          <div class="stat-title">Prestasi</div>
+          <div class="stat-value" id="stat-prestasi">0</div>
+          <div class="stat-change" id="stat-prestasi-change">+0 bulan ini</div>
+        </div>
+      </div>
+      
+      <!-- Recent Activity -->
+      <div class="content-card">
+        <div class="card-header">
+          <h3>📈 Aktivitas Terbaru</h3>
+        </div>
+        <div class="card-body">
+          <div id="recent-activity">Memuat aktivitas...</div>
+        </div>
+      </div>
+    </section>
+    
+    <!-- GALERI SECTION -->
+    <section id="galeri-section" class="content-section" style="display: none;">
+      <div class="header">
+        <h1>📸 Kelola Galeri</h1>
+        <p>Tambah dan kelola foto/video untuk website</p>
+      </div>
+      
+      <div class="content-card">
+        <div class="card-header">
+          <h3>Data Galeri</h3>
+          <button class="btn btn-primary" onclick="showModal('modalGaleri')">
+            <span>+</span>
+            <span>Tambah Baru</span>
+          </button>
+        </div>
+        <div class="card-body">
+          <div id="galeri-data">Memuat data galeri...</div>
+        </div>
+      </div>
+    </section>
+    
+    <!-- JADWAL SECTION -->
+    <section id="jadwal-section" class="content-section" style="display: none;">
+      <div class="header">
+        <h1>📅 Kelola Jadwal</h1>
+        <p>Kelola jadwal kuliah, UTS, dan UAS</p>
+      </div>
+      
+      <div class="content-card">
+        <div class="card-header">
+          <h3>Data Jadwal</h3>
+          <button class="btn btn-primary" onclick="showModal('modalJadwal')">
+            <span>+</span>
+            <span>Tambah Jadwal</span>
+          </button>
+        </div>
+        <div class="card-body">
+          <div id="jadwal-data">Memuat data jadwal...</div>
+        </div>
+      </div>
+    </section>
+    
+    <!-- TUGAS SECTION -->
+    <section id="tugas-section" class="content-section" style="display: none;">
+      <div class="header">
+        <h1>📂 Kelola Tugas</h1>
+        <p>Kelola tugas dan link Google Drive</p>
+      </div>
+      
+      <div class="content-card">
+        <div class="card-header">
+          <h3>Data Tugas</h3>
+          <button class="btn btn-primary" onclick="showModal('modalTugas')">
+            <span>+</span>
+            <span>Tambah Tugas</span>
+          </button>
+        </div>
+        <div class="card-body">
+          <div id="tugas-data">Memuat data tugas...</div>
+        </div>
+      </div>
+    </section>
+    
+    <!-- PRESTASI SECTION -->
+    <section id="prestasi-section" class="content-section" style="display: none;">
+      <div class="header">
+        <h1>🏆 Kelola Prestasi</h1>
+        <p>Kelola prestasi dan pencapaian kelas</p>
+      </div>
+      
+      <div class="content-card">
+        <div class="card-header">
+          <h3>Data Prestasi</h3>
+          <button class="btn btn-primary" onclick="showModal('modalPrestasi')">
+            <span>+</span>
+            <span>Tambah Prestasi</span>
+          </button>
+        </div>
+        <div class="card-body">
+          <div id="prestasi-data">Memuat data prestasi...</div>
+        </div>
+      </div>
+    </section>
+    
+    <!-- STRUKTUR SECTION -->
+    <section id="struktur-section" class="content-section" style="display: none;">
+      <div class="header">
+        <h1>👥 Kelola Struktur</h1>
+        <p>Kelola struktur kepengurusan kelas</p>
+      </div>
+      
+      <div class="content-card">
+        <div class="card-header">
+          <h3>Data Struktur</h3>
+          <button class="btn btn-primary" onclick="showModal('modalStruktur')">
+            <span>+</span>
+            <span>Tambah Anggota</span>
+          </button>
+        </div>
+        <div class="card-body">
+          <div id="struktur-data">Memuat data struktur...</div>
+        </div>
+      </div>
+    </section>
+    
+    <!-- GENERATE SECTION -->
+    <section id="generate-section" class="content-section" style="display: none;">
+      <div class="header">
+        <h1>⚙️ Generate Data</h1>
+        <p>Generate file Data.js untuk website</p>
+      </div>
+      
+      <div class="content-card">
+        <div class="card-header">
+          <h3>Generate Data.js</h3>
+        </div>
+        <div class="card-body">
+          <p style="margin-bottom: 20px;">Klik tombol di bawah untuk generate file <strong>Data.js</strong> dari semua data Firebase.</p>
+          <p style="color: #94a3b8; margin-bottom: 20px;">File ini akan otomatis didownload dan siap diupload ke hosting.</p>
+          
+          <!-- Di section generate, sebelum tombol Generate & Download -->
+          <button class="btn btn-warning" onclick="cleanupGaleri()" style="margin-bottom: 10px;">
+            <span>🧹</span>
+            <span>Bersihkan Galeri Rusak</span>
+          </button>
+          
+          <button class="btn btn-success" onclick="generateDataJS()" style="margin-bottom: 20px;">
+            <span>📥</span>
+            <span>Generate & Download Data.js</span>
+          </button>
+          
+          <div id="generate-status"></div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- MODALS -->
+  <!-- Modal Galeri -->
+  <div id="modalGaleri" class="modal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3>Tambah Galeri</h3>
+      </div>
+      <div class="modal-body">
+        <div class="form-group">
+          <label class="form-label">Judul</label>
+          <input type="text" class="form-control" id="gTitle" placeholder="Judul foto/video" required>
+        </div>
+        
+        <div class="form-group">
+          <label class="form-label">Keterangan</label>
+          <textarea class="form-control" id="gCaption" placeholder="Deskripsi (opsional)"></textarea>
+        </div>
+        
+        <div class="form-group">
+          <label class="form-label">Tanggal (YYYY-MM-DD)</label>
+          <input type="date" class="form-control" id="gTanggal" value="<?php echo date('Y-m-d'); ?>">
+          <small style="color: #94a3b8; font-size: 12px;">Format: Tahun-Bulan-Hari</small>
+        </div>
+        
+        <div class="form-group">
+          <label class="form-label">Kategori</label>
+          <select class="form-control" id="gCategory" required>
+            <option value="foto-terbaru">📸 Foto Terbaru</option>
+            <option value="kenangan">💝 Kenangan</option>
+            <option value="prestasi">🏆 Prestasi</option>
+            <option value="piknik">🏕️ Piknik</option>
+            <option value="ulang-tahun">🎂 Ulang Tahun</option>
+          </select>
+        </div>
+        
+        <div class="form-group">
+          <label class="form-label">File (Foto/Video)</label>
+          <input type="file" class="form-control" id="gFile" accept="image/*,video/*" required>
+          <small style="color: #94a3b8; font-size: 12px;">Maksimal 10MB. Foto lebih cepat dari video</small>
+        </div>
+        
+        <div style="display: flex; gap: 10px; margin-top: 30px;">
+          <button type="button" class="btn btn-primary" onclick="handleGaleriSubmit()" style="flex: 1;">
+            💾 Simpan & Upload
+          </button>
+          <button type="button" class="btn btn-secondary" onclick="hideModal('modalGaleri')" style="flex: 1;">
+            ❌ Batal
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Modal Jadwal -->
+  <div id="modalJadwal" class="modal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3>Tambah Jadwal</h3>
+      </div>
+      <div class="modal-body">
+        <div class="form-group">
+          <label class="form-label">Hari</label>
+          <select class="form-control" id="jHari" required>
+            <option value="">Pilih Hari</option>
+            <option value="Senin">Senin</option>
+            <option value="Selasa">Selasa</option>
+            <option value="Rabu">Rabu</option>
+            <option value="Kamis">Kamis</option>
+            <option value="Jumat">Jumat</option>
+            <option value="Sabtu">Sabtu</option>
+          </select>
+        </div>
+        
+        <div class="form-group">
+          <label class="form-label">Mata Kuliah</label>
+          <input type="text" class="form-control" id="jMatkul" placeholder="Nama mata kuliah" required>
+        </div>
+        
+        <div class="form-group">
+          <label class="form-label">Waktu</label>
+          <input type="text" class="form-control" id="jTime" placeholder="08:00 - 10:00" required>
+        </div>
+        
+        <div class="form-group">
+          <label class="form-label">Ruangan</label>
+          <input type="text" class="form-control" id="jRuangan" placeholder="Ruang kuliah" required>
+        </div>
+        
+        <div class="form-group">
+          <label class="form-label">Dosen</label>
+          <input type="text" class="form-control" id="jDosen" placeholder="Nama dosen" required>
+        </div>
+        
+        <div class="form-group">
+          <label class="form-label">Mode</label>
+          <select class="form-control" id="jMode">
+            <option value="regular">📚 Jadwal Kuliah</option>
+            <option value="uts">📝 UTS</option>
+            <option value="uas">📖 UAS</option>
+          </select>
+        </div>
+        
+        <div style="display: flex; gap: 10px; margin-top: 30px;">
+          <button type="button" class="btn btn-primary" onclick="handleJadwalSubmit()" style="flex: 1;">💾 Simpan</button>
+          <button type="button" class="btn btn-secondary" onclick="hideModal('modalJadwal')" style="flex: 1;">❌ Batal</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Modal Tugas -->
+  <div id="modalTugas" class="modal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3>Tambah Tugas</h3>
+      </div>
+      <div class="modal-body">
+        <div class="form-group">
+          <label class="form-label">Judul Tugas</label>
+          <input type="text" class="form-control" id="tTitle" placeholder="Judul tugas" required>
+        </div>
+        
+        <div class="form-group">
+          <label class="form-label">Mata Kuliah</label>
+          <input type="text" class="form-control" id="tMatkul" placeholder="Nama mata kuliah" required>
+        </div>
+        
+        <div class="form-group">
+          <label class="form-label">Deadline</label>
+          <input type="text" class="form-control" id="tDeadline" placeholder="DD/MM/YYYY HH:MM" required>
+        </div>
+        
+        <div class="form-group">
+          <label class="form-label">Link Google Drive</label>
+          <input type="url" class="form-control" id="tDriveLink" placeholder="https://drive.google.com/..." required>
+        </div>
+        
+        <div class="form-group">
+          <label class="form-label">Icon (opsional)</label>
+          <input type="text" class="form-control" id="tIcon" placeholder="📝" maxlength="2">
+        </div>
+        
+        <div class="form-group">
+          <label class="form-label">Status</label>
+          <select class="form-control" id="tStatus">
+            <option value="open">📂 Dibuka</option>
+            <option value="closed">🔒 Ditutup</option>
+          </select>
+        </div>
+        
+        <div style="display: flex; gap: 10px; margin-top: 30px;">
+          <button type="button" class="btn btn-primary" onclick="handleTugasSubmit()" style="flex: 1;">💾 Simpan</button>
+          <button type="button" class="btn btn-secondary" onclick="hideModal('modalTugas')" style="flex: 1;">❌ Batal</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Modal Prestasi -->
+  <div id="modalPrestasi" class="modal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3>Tambah Prestasi</h3>
+      </div>
+      <div class="modal-body">
+        <div class="form-group">
+          <label class="form-label">Judul Prestasi</label>
+          <input type="text" class="form-control" id="pTitle" placeholder="Judul prestasi" required>
+        </div>
+        
+        <div class="form-group">
+          <label class="form-label">Deskripsi</label>
+          <textarea class="form-control" id="pCaption" placeholder="Deskripsi prestasi (opsional)"></textarea>
+        </div>
+        
+        <div class="form-group">
+          <label class="form-label">Tanggal (YYYY-MM-DD)</label>
+          <input type="date" class="form-control" id="pTanggal" value="<?php echo date('Y-m-d'); ?>">
+          <small style="color: #94a3b8; font-size: 12px;">Format: Tahun-Bulan-Hari</small>
+        </div>
+        
+        <div class="form-group">
+          <label class="form-label">Foto/Video (opsional)</label>
+          <input type="file" class="form-control" id="pFile" accept="image/*,video/*">
+          <small style="color: #94a3b8; font-size: 12px;">Maksimal 10MB</small>
+        </div>
+        
+        <div style="display: flex; gap: 10px; margin-top: 30px;">
+          <button type="button" class="btn btn-primary" onclick="handlePrestasiSubmit()" style="flex: 1;">💾 Simpan</button>
+          <button type="button" class="btn btn-secondary" onclick="hideModal('modalPrestasi')" style="flex: 1;">❌ Batal</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Modal Struktur -->
+  <div id="modalStruktur" class="modal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3>Tambah Anggota</h3>
+      </div>
+      <div class="modal-body">
+        <div class="form-group">
+          <label class="form-label">Nama Lengkap</label>
+          <input type="text" class="form-control" id="sNama" placeholder="Nama lengkap" required>
+        </div>
+        
+        <div class="form-group">
+          <label class="form-label">Jabatan</label>
+          <input type="text" class="form-control" id="sJabatan" placeholder="Jabatan" required>
+        </div>
+        
+        <div class="form-group">
+          <label class="form-label">Initial (1 huruf)</label>
+          <input type="text" class="form-control" id="sInitial" placeholder="A" maxlength="1">
+        </div>
+        
+        <div class="form-group">
+          <label class="form-label">Urutan</label>
+          <input type="number" class="form-control" id="sUrutan" placeholder="1" min="1" value="1">
+        </div>
+        
+        <div class="form-group">
+          <label class="form-label">Foto (opsional)</label>
+          <input type="file" class="form-control" id="sFile" accept="image/*">
+          <small style="color: #94a3b8; font-size: 12px;">Maksimal 5MB</small>
+        </div>
+        
+        <div style="display: flex; gap: 10px; margin-top: 30px;">
+          <button type="button" class="btn btn-primary" onclick="handleStrukturSubmit()" style="flex: 1;">💾 Simpan</button>
+          <button type="button" class="btn btn-secondary" onclick="hideModal('modalStruktur')" style="flex: 1;">❌ Batal</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- LOADING OVERLAY -->
+  <div id="loadingOverlay" class="modal" style="display: none;">
+    <div style="text-align: center;">
+      <div class="spinner"></div>
+      <p style="margin-top: 15px; font-size: 16px;" id="loadingText">Memproses...</p>
+    </div>
+  </div>
+
+  <script src="admin-dashboard.js"></script>
+</body>
+</html>

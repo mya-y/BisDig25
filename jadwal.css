@@ -1,0 +1,252 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+  background: linear-gradient(180deg, #0f172a, #1e293b);
+  color: #e5e7eb;
+  line-height: 1.6;
+  padding: 20px;
+}
+
+.container {
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+/* Header */
+.header {
+  text-align: center;
+  padding: 60px 20px 40px;
+  position: relative;
+}
+
+.btn-back {
+  position: absolute;
+  left: 0;
+  top: 60px;
+  padding: 10px 20px;
+  background: #1e293b;
+  border: 1px solid #38bdf8;
+  color: white;
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 16px;
+  text-decoration: none;
+  transition: all 0.3s;
+}
+
+.btn-back:active {
+  transform: scale(0.95);
+}
+
+.header-icon {
+  font-size: 4em;
+  margin-bottom: 20px;
+}
+
+h1 {
+  font-size: 2.5em;
+  margin-bottom: 10px;
+  background: linear-gradient(135deg, #38bdf8, #818cf8);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.subtitle {
+  color: #94a3b8;
+  font-size: 1.1em;
+}
+
+/* Mode Toggle */
+.mode-toggle {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  margin-bottom: 30px;
+  flex-wrap: wrap;
+}
+
+.mode-btn {
+  padding: 12px 30px;
+  background: rgba(30, 41, 59, 0.8);
+  border: 2px solid rgba(56, 189, 248, 0.3);
+  border-radius: 12px;
+  color: #94a3b8;
+  cursor: pointer;
+  transition: all 0.3s;
+  font-size: 1em;
+  font-weight: 600;
+}
+
+.mode-btn.active {
+  background: linear-gradient(135deg, #38bdf8, #818cf8);
+  border-color: #38bdf8;
+  color: white;
+  box-shadow: 0 0 20px rgba(56, 189, 248, 0.5);
+}
+
+/* Day Tabs */
+.day-tabs {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 30px;
+  overflow-x: auto;
+  padding-bottom: 10px;
+}
+
+.day-tab {
+  padding: 12px 24px;
+  background: rgba(30, 41, 59, 0.8);
+  border: 2px solid rgba(56, 189, 248, 0.3);
+  border-radius: 10px;
+  color: #94a3b8;
+  cursor: pointer;
+  transition: all 0.3s;
+  white-space: nowrap;
+  font-weight: 500;
+}
+
+.day-tab.active {
+  background: rgba(56, 189, 248, 0.2);
+  border-color: #38bdf8;
+  color: #38bdf8;
+  box-shadow: 0 0 15px rgba(56, 189, 248, 0.3);
+}
+
+/* Schedule Container */
+.schedule-container {
+  background: rgba(30, 41, 59, 0.8);
+  border: 2px solid rgba(56, 189, 248, 0.3);
+  border-radius: 15px;
+  padding: 30px;
+  margin-bottom: 40px;
+}
+
+.schedule-item {
+  background: rgba(15, 23, 42, 0.5);
+  border-left: 4px solid #38bdf8;
+  border-radius: 10px;
+  padding: 20px;
+  margin-bottom: 15px;
+  transition: all 0.3s;
+  border: 2px solid rgba(56, 189, 248, 0.2);
+}
+
+.schedule-item:hover {
+  transform: translateX(5px);
+  box-shadow: 0 0 20px rgba(56, 189, 248, 0.3);
+  border-color: #38bdf8;
+}
+
+/* UTS/UAS Style */
+.schedule-item.exam {
+  border-left-color: #fbbf24;
+  border-color: rgba(251, 191, 36, 0.3);
+  background: rgba(251, 191, 36, 0.05);
+}
+
+.schedule-item.exam:hover {
+  border-color: #fbbf24;
+  box-shadow: 0 0 20px rgba(251, 191, 36, 0.3);
+}
+
+.schedule-time {
+  color: #38bdf8;
+  font-weight: bold;
+  font-size: 1.1em;
+  margin-bottom: 10px;
+}
+
+.schedule-item.exam .schedule-time {
+  color: #fbbf24;
+}
+
+.schedule-matkul {
+  font-size: 1.2em;
+  font-weight: bold;
+  color: #e5e7eb;
+  margin-bottom: 8px;
+}
+
+.schedule-meta {
+  color: #94a3b8;
+  font-size: 0.9em;
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.schedule-meta span {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.exam-badge {
+  display: inline-block;
+  background: linear-gradient(135deg, #fbbf24, #f59e0b);
+  color: #0f172a;
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-size: 0.85em;
+  font-weight: bold;
+  margin-bottom: 8px;
+}
+
+.empty-schedule {
+  text-align: center;
+  padding: 60px 20px;
+  color: #64748b;
+}
+
+.empty-schedule-icon {
+  font-size: 4em;
+  margin-bottom: 20px;
+  opacity: 0.3;
+}
+
+/* Footer */
+footer {
+  text-align: center;
+  padding: 40px 20px 20px;
+  color: #64748b;
+  font-size: 0.9em;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  margin-top: 40px;
+}
+
+/* Responsive */
+@media (max-width: 640px) {
+  h1 {
+    font-size: 2em;
+  }
+
+  .btn-back {
+    position: static;
+    display: inline-block;
+    margin-bottom: 20px;
+  }
+
+  .schedule-container {
+    padding: 20px 15px;
+  }
+
+  .schedule-item {
+    padding: 15px;
+  }
+
+  .schedule-meta {
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .mode-btn {
+    padding: 10px 20px;
+    font-size: 0.9em;
+  }
+}

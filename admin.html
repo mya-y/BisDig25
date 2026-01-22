@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login Admin - BD25</title>
+  <style>
+    body { background: #0f172a; color: white; font-family: sans-serif; display: flex; justify-content: center; align-items: center; min-height: 100vh; margin: 0; }
+    .login-box { background: #1e293b; padding: 40px 20px; border-radius: 20px; border: 1px solid #38bdf8; width: 90%; max-width: 350px; text-align: center; box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
+    h1 { color: #38bdf8; margin-bottom: 20px; }
+    input { width: 100%; padding: 12px; margin: 15px 0; border-radius: 10px; border: 1px solid #334155; background: #0f172a; color: white; box-sizing: border-box; }
+    button { width: 100%; padding: 12px; background: linear-gradient(135deg, #38bdf8, #818cf8); border: none; border-radius: 10px; color: white; font-weight: bold; cursor: pointer; font-size: 16px; }
+    button:active { transform: scale(0.98); }
+    .error-msg { color: #f87171; font-size: 14px; margin-top: 15px; min-height: 20px; }
+  </style>
+</head>
+<body>
+
+  <div class="login-box">
+    <h1>Admin Login</h1>
+    <p>Web Kelas BisDig 25</p>
+    <input type="password" id="passInput" placeholder="Masukkan Password">
+    <button type="button" onclick="prosesLogin()">Masuk ke Dashboard</button>
+    <p id="pesanError" class="error-msg"></p>
+  </div>
+
+  <script>
+    // Cek jika sudah login sebelumnya, langsung lempar ke dashboard
+    if (localStorage.getItem('admin_auth') === 'true') {
+      window.location.href = 'admin-dashboard.html';
+    }
+
+    function prosesLogin() {
+      const pass = document.getElementById('passInput').value;
+      // Password Anda
+      if (pass === 'bisdig2025') {
+        localStorage.setItem('admin_auth', 'true');
+        window.location.href = 'admin-dashboard.html'; // Pindah halaman
+      } else {
+        const error = document.getElementById('pesanError');
+        error.textContent = 'Password Salah!';
+        // Efek getar di HP
+        if(navigator.vibrate) navigator.vibrate(200);
+      }
+    }
+  </script>
+</body>
+</html>

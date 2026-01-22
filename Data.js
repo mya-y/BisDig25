@@ -1,0 +1,563 @@
+// ============================================
+// DATA.JS - Generated from Firebase
+// Generated: 21/1/2026, 21.49.27
+// Total Data: Galeri(16), Jadwal(2), Tugas(0), Prestasi(0), Struktur(23)
+// ============================================
+
+const DATA = {
+  "galeri": [
+    {
+      "id": "0SeHl9mDqVkrabeRzmZR",
+      "url": "https://res.cloudinary.com/doa7ccgyl/image/upload/v1768898880/eugxzm5p9jjzltkw75or.jpg"
+    },
+    {
+      "id": "HWYW08UzPPVkVEJmJIpS",
+      "category": "foto-terbaru",
+      "timestamp": {
+        "seconds": 1768914983,
+        "nanoseconds": 696000000
+      },
+      "title": "Kampus",
+      "url": "https://res.cloudinary.com/doa7ccgyl/image/upload/v1768914982/zittuopnw79ldedk7zrv.jpg",
+      "tanggal": "2026-01-16",
+      "type": "image",
+      "caption": "Fotbar kampus"
+    },
+    {
+      "id": "7dQtxeYdsqNR9NJ1k6vV",
+      "caption": "Ngejar dosen",
+      "type": "image",
+      "url": "https://res.cloudinary.com/doa7ccgyl/image/upload/v1768950252/dgrljhjw70dalxmtzbtt.jpg",
+      "timestamp": {
+        "seconds": 1768950253,
+        "nanoseconds": 236000000
+      },
+      "title": "Kampus",
+      "tanggal": "2026-01-12",
+      "category": "foto-terbaru"
+    },
+    {
+      "id": "prMzkNdmfUL2eFu1Hja0",
+      "url": "https://res.cloudinary.com/doa7ccgyl/image/upload/v1769001803/f3ufl8cb3g4lepp07bdj.jpg",
+      "title": "UAS",
+      "type": "image",
+      "tanggal": "2026-01-05",
+      "timestamp": {
+        "seconds": 1769001804,
+        "nanoseconds": 893000000
+      },
+      "category": "kenangan",
+      "caption": "Uas Pemrograman"
+    },
+    {
+      "id": "PqlxEaX1LYoITwx23fpD",
+      "title": "Bona",
+      "timestamp": {
+        "seconds": 1769002054,
+        "nanoseconds": 754000000
+      },
+      "category": "kenangan",
+      "url": "https://res.cloudinary.com/doa7ccgyl/image/upload/v1769002053/pwgm2blazt2o1qetmtvt.jpg",
+      "caption": "Kerkom",
+      "tanggal": "2026-01-03",
+      "type": "image"
+    },
+    {
+      "id": "Q7KuGaExC3y1AR88JYVJ",
+      "url": "https://res.cloudinary.com/doa7ccgyl/video/upload/v1769001727/ngpzyeok2cs1rfy2q23i.mp4",
+      "tanggal": "2025-11-15",
+      "caption": "Latihan akusitk",
+      "title": "Pesona",
+      "type": "video",
+      "category": "kenangan",
+      "timestamp": {
+        "seconds": 1769001728,
+        "nanoseconds": 390000000
+      }
+    },
+    {
+      "id": "FQSNsdT0G95vNacZUxCZ",
+      "category": "kenangan",
+      "timestamp": {
+        "seconds": 1768950430,
+        "nanoseconds": 588000000
+      },
+      "caption": "DAD pikom imm dik",
+      "tanggal": "2025-11-12",
+      "type": "image",
+      "url": "https://res.cloudinary.com/doa7ccgyl/image/upload/v1768950429/pd4ufwjohozionh6uwje.jpg",
+      "title": "DAD"
+    },
+    {
+      "id": "38VkphHlUj5kHM6qvBBv",
+      "timestamp": {
+        "seconds": 1769002663,
+        "nanoseconds": 927000000
+      },
+      "url": "https://res.cloudinary.com/doa7ccgyl/image/upload/v1769002660/nj0jdoivypaflvwrqb3b.jpg",
+      "title": "TDB",
+      "category": "kenangan",
+      "tanggal": "2025-09-27",
+      "type": "image",
+      "caption": "Boy"
+    },
+    {
+      "id": "IUBgnH4tiJOsQc9j7w86",
+      "tanggal": "2025-09-27",
+      "caption": "Girl",
+      "timestamp": {
+        "seconds": 1769002725,
+        "nanoseconds": 125000000
+      },
+      "category": "kenangan",
+      "url": "https://res.cloudinary.com/doa7ccgyl/image/upload/v1769002713/fo9tv3hxkz0uqnmzvoyz.jpg",
+      "type": "image",
+      "title": "TDB"
+    },
+    {
+      "id": "g9eNhVRqhHzPqFbfEOfA",
+      "title": "TDB",
+      "type": "image",
+      "caption": "tdb di pantai lowita",
+      "category": "kenangan",
+      "timestamp": {
+        "seconds": 1768950749,
+        "nanoseconds": 575000000
+      },
+      "url": "https://res.cloudinary.com/doa7ccgyl/image/upload/v1768950748/tlczz7mhnj1xmdjmqfiu.jpg",
+      "tanggal": "2025-09-27"
+    },
+    {
+      "id": "jQHD5nYECpiU7l3mZNjW",
+      "timestamp": {
+        "seconds": 1769001552,
+        "nanoseconds": 752000000
+      },
+      "tanggal": "2025-09-27",
+      "category": "kenangan",
+      "caption": "Anu di lowita",
+      "title": "Lowita",
+      "url": "https://res.cloudinary.com/doa7ccgyl/image/upload/v1769001551/whtcpqczum9bcrst7aca.jpg",
+      "type": "image"
+    },
+    {
+      "id": "Po9xq9ufurVWUtbAaOEG",
+      "url": "https://res.cloudinary.com/doa7ccgyl/image/upload/v1769002188/bf6zjnxqclz4vekbicpo.jpg",
+      "timestamp": {
+        "seconds": 1769002189,
+        "nanoseconds": 50000000
+      },
+      "tanggal": "2025-09-26",
+      "title": "TDB",
+      "category": "kenangan",
+      "type": "image",
+      "caption": "Tdb girl"
+    },
+    {
+      "id": "X7WPpVVcLAz6a2BHTSLe",
+      "category": "kenangan",
+      "title": "TDB",
+      "caption": "Tdb boy",
+      "timestamp": {
+        "seconds": 1769002229,
+        "nanoseconds": 889000000
+      },
+      "url": "https://res.cloudinary.com/doa7ccgyl/image/upload/v1769002229/kusjkf0on8irhiixw1as.jpg",
+      "tanggal": "2025-09-26",
+      "type": "image"
+    },
+    {
+      "id": "lEmDjJ0unXoGDDjCXghl",
+      "type": "image",
+      "caption": "Kerkom pertama",
+      "category": "kenangan",
+      "timestamp": {
+        "seconds": 1768950675,
+        "nanoseconds": 294000000
+      },
+      "title": "Bona",
+      "tanggal": "2025-09-06",
+      "url": "https://res.cloudinary.com/doa7ccgyl/image/upload/v1768950674/ghaotttqceaag3kld1ol.jpg"
+    },
+    {
+      "id": "rwOt2NoXvAVA2TKFKUUh",
+      "caption": "Zoom pertama kuliah",
+      "type": "image",
+      "tanggal": "2025-09-03",
+      "category": "kenangan",
+      "timestamp": {
+        "seconds": 1768950567,
+        "nanoseconds": 103000000
+      },
+      "title": "Zoom",
+      "url": "https://res.cloudinary.com/doa7ccgyl/image/upload/v1768950566/id5ztilztx7a7heb4dol.jpg"
+    },
+    {
+      "id": "aOxJ9QGJ5GKFT2ObQ9K1",
+      "caption": "Pesantren mahasiswa baru ums rappang",
+      "title": "Pesma",
+      "category": "kenangan",
+      "url": "https://res.cloudinary.com/doa7ccgyl/image/upload/v1768919834/zngsdgmk0yhx4osbgzjf.jpg",
+      "tanggal": "2025-08-27",
+      "type": "image",
+      "timestamp": {
+        "seconds": 1768919835,
+        "nanoseconds": 979000000
+      }
+    }
+  ],
+  "jadwal": [
+    {
+      "id": "ZHNt5tERWCBahD9DitRl",
+      "mode": "regular",
+      "matkul": "Pemrograman ",
+      "dosen": "Pak wildan",
+      "ruangan": "5",
+      "timestamp": {
+        "seconds": 1768899013,
+        "nanoseconds": 344000000
+      },
+      "time": "09.40 - 11.00",
+      "hari": "Senin"
+    },
+    {
+      "id": "uGr7c6n8k0jO8cSibVhm",
+      "mode": "uts",
+      "hari": "Selasa",
+      "matkul": "Anu",
+      "dosen": "Pak wil",
+      "time": "10.00 - 11.00",
+      "ruangan": "6",
+      "timestamp": {
+        "seconds": 1768910707,
+        "nanoseconds": 346000000
+      }
+    }
+  ],
+  "tugas": [],
+  "prestasi": [],
+  "struktur": [
+    {
+      "id": "Q4vz4ZwfcjxzsQd6Ve4B",
+      "timestamp": {
+        "seconds": 1768918365,
+        "nanoseconds": 500000000
+      },
+      "nama": "Muh. Yadi Aldiansyah",
+      "initial": "Y",
+      "urutan": 1,
+      "foto": "https://res.cloudinary.com/doa7ccgyl/image/upload/v1768918363/jr5onxuzqp0yob1iielq.jpg",
+      "jabatan": "Ketua Tingkat"
+    },
+    {
+      "id": "SKgfArIlYEp7YLEorlhb",
+      "timestamp": {
+        "seconds": 1768918466,
+        "nanoseconds": 166000000
+      },
+      "urutan": 2,
+      "foto": "https://res.cloudinary.com/doa7ccgyl/image/upload/v1768918465/cnzqdy6skxdzfbjglm1b.jpg",
+      "jabatan": "Sekertaris",
+      "nama": "Alika Shalsabila",
+      "initial": "A"
+    },
+    {
+      "id": "NMr3Sj7qJ1EQ1DzPrrDq",
+      "initial": "A",
+      "jabatan": "Bendahara",
+      "urutan": 3,
+      "nama": "Andi Kaltsum Tenriwali",
+      "timestamp": {
+        "seconds": 1768918503,
+        "nanoseconds": 447000000
+      },
+      "foto": "https://res.cloudinary.com/doa7ccgyl/image/upload/v1768918502/jrdrzg87qvny4ln9srso.jpg"
+    },
+    {
+      "id": "zy19coV3gfRMqryDQ56r",
+      "timestamp": {
+        "seconds": 1768918578,
+        "nanoseconds": 701000000
+      },
+      "urutan": 4,
+      "foto": "https://res.cloudinary.com/doa7ccgyl/image/upload/v1768918577/ap2rskzbsu65bjlyv6ro.jpg",
+      "jabatan": "Anggota",
+      "initial": "N",
+      "nama": "Nurmiati"
+    },
+    {
+      "id": "bQWBVSWELx9EmCBZ8RxJ",
+      "foto": "https://res.cloudinary.com/doa7ccgyl/image/upload/v1768918734/oziq1rbb8mgyvqfdnahh.jpg",
+      "initial": "N",
+      "urutan": 5,
+      "timestamp": {
+        "seconds": 1768918735,
+        "nanoseconds": 406000000
+      },
+      "jabatan": "Anggota",
+      "nama": "Nabila Rahma"
+    },
+    {
+      "id": "m9HSfe3Q3gUCV8reB2dX",
+      "initial": "A",
+      "urutan": 6,
+      "foto": "https://res.cloudinary.com/doa7ccgyl/image/upload/v1768918673/tuhdjgslmnkcrunhge9e.jpg",
+      "nama": "Asnawati",
+      "timestamp": {
+        "seconds": 1768918674,
+        "nanoseconds": 161000000
+      },
+      "jabatan": "Anggota"
+    },
+    {
+      "id": "Q52jTMsjC8C0Q3v9JarE",
+      "urutan": 7,
+      "initial": "D",
+      "nama": "Deon Dermawan",
+      "jabatan": "Anggota",
+      "foto": "https://res.cloudinary.com/doa7ccgyl/image/upload/v1768918800/bknftr7viojbt0anencj.jpg",
+      "timestamp": {
+        "seconds": 1768918801,
+        "nanoseconds": 505000000
+      }
+    },
+    {
+      "id": "vA45mtK0oyAh5oUZiJBm",
+      "initial": "F",
+      "foto": "https://res.cloudinary.com/doa7ccgyl/image/upload/v1768918840/dsyzkphihk8pfivby2zt.jpg",
+      "nama": "Febri Ali",
+      "jabatan": "Anggota",
+      "timestamp": {
+        "seconds": 1768918841,
+        "nanoseconds": 26000000
+      },
+      "urutan": 8
+    },
+    {
+      "id": "MdmsS734Z7pUuYdDqv4l",
+      "foto": "https://res.cloudinary.com/doa7ccgyl/image/upload/v1768918898/wv6hkhrfhibclaa0rifo.jpg",
+      "jabatan": "Anggota",
+      "urutan": 9,
+      "timestamp": {
+        "seconds": 1768918899,
+        "nanoseconds": 937000000
+      },
+      "nama": "Risna Yanti",
+      "initial": "N"
+    },
+    {
+      "id": "YA5mr42gZz3c8PYiIQvA",
+      "nama": "Putri",
+      "foto": "https://res.cloudinary.com/doa7ccgyl/image/upload/v1768918925/reyfsa498qxwkfypmxbj.jpg",
+      "jabatan": "Anggota",
+      "timestamp": {
+        "seconds": 1768918926,
+        "nanoseconds": 474000000
+      },
+      "initial": "P",
+      "urutan": 10
+    },
+    {
+      "id": "yxmRLfGgum78p8Yro2ty",
+      "urutan": 11,
+      "jabatan": "Anggota",
+      "timestamp": {
+        "seconds": 1768918995,
+        "nanoseconds": 369000000
+      },
+      "initial": "Z",
+      "foto": "https://res.cloudinary.com/doa7ccgyl/image/upload/v1768918994/uyiafnxycvmwmxvf1gea.jpg",
+      "nama": "Zulfikar Nurdin"
+    },
+    {
+      "id": "QkeldzEkXcVGeoFqCFjd",
+      "foto": "https://res.cloudinary.com/doa7ccgyl/image/upload/v1769001262/gjixqute2onf8hbttbjw.jpg",
+      "jabatan": "Anggota",
+      "nama": "Andi Ramdani",
+      "initial": "A",
+      "timestamp": {
+        "seconds": 1769001262,
+        "nanoseconds": 847000000
+      },
+      "urutan": 12
+    },
+    {
+      "id": "g67osj6v4WS9Cwkq6n2L",
+      "foto": "https://res.cloudinary.com/doa7ccgyl/image/upload/v1769001207/gmfjfj7xtocnsgxnrauy.jpg",
+      "jabatan": "Anggota",
+      "nama": "Taufik Rahmat Hidayah",
+      "urutan": 13,
+      "initial": "T",
+      "timestamp": {
+        "seconds": 1769001207,
+        "nanoseconds": 998000000
+      }
+    },
+    {
+      "id": "tNaHL8sE2u8WyE0rlbgX",
+      "nama": "Amaliah Ramadhani",
+      "jabatan": "Anggota",
+      "foto": "https://res.cloudinary.com/doa7ccgyl/image/upload/v1768919115/ogchwng25ktj7fa1wlla.jpg",
+      "timestamp": {
+        "seconds": 1768919116,
+        "nanoseconds": 92000000
+      },
+      "initial": "A",
+      "urutan": 14
+    },
+    {
+      "id": "mb11HQLnJURPWsZGwpfJ",
+      "initial": "A",
+      "foto": "https://res.cloudinary.com/doa7ccgyl/image/upload/v1768919142/lrpxtnszonsiabkkqsnx.jpg",
+      "nama": "Akbar Fajri",
+      "jabatan": "Anggota",
+      "timestamp": {
+        "seconds": 1768919143,
+        "nanoseconds": 516000000
+      },
+      "urutan": 15
+    },
+    {
+      "id": "B0eNEpHUyeG0j5jZ8RIg",
+      "foto": "https://res.cloudinary.com/doa7ccgyl/image/upload/v1768919176/hnhcpne1menxxmcbjkmg.jpg",
+      "nama": "Muh. Fadli Akbar N.",
+      "jabatan": "Anggota",
+      "timestamp": {
+        "seconds": 1768919177,
+        "nanoseconds": 310000000
+      },
+      "initial": "F",
+      "urutan": 16
+    },
+    {
+      "id": "pBANh7LwhAnmQamTKSUV",
+      "urutan": 17,
+      "jabatan": "Anggota",
+      "initial": "N",
+      "nama": "Ahmad Nabil Ramadhan N.",
+      "timestamp": {
+        "seconds": 1769001237,
+        "nanoseconds": 225000000
+      },
+      "foto": "https://res.cloudinary.com/doa7ccgyl/image/upload/v1769001236/hwonz6er7rzywoqz89sn.jpg"
+    },
+    {
+      "id": "bHtq4SQXuzd3FFBefnbN",
+      "jabatan": "Anggota",
+      "urutan": 18,
+      "timestamp": {
+        "seconds": 1768919263,
+        "nanoseconds": 403000000
+      },
+      "nama": "Muh. Yasril",
+      "initial": "Y",
+      "foto": "https://res.cloudinary.com/doa7ccgyl/image/upload/v1768919262/ktjeqid0vsuyhag64vzj.jpg"
+    },
+    {
+      "id": "oHAlaczKVUWu02DPNP06",
+      "foto": "https://res.cloudinary.com/doa7ccgyl/image/upload/v1769001416/itmzwy5p11oucnqgasby.jpg",
+      "timestamp": {
+        "seconds": 1769001416,
+        "nanoseconds": 822000000
+      },
+      "nama": "Arnita",
+      "initial": "A",
+      "urutan": 19,
+      "jabatan": "Anggota"
+    },
+    {
+      "id": "oWLzUdt188LN9GHJQMbQ",
+      "jabatan": "Anggota",
+      "initial": "Y",
+      "urutan": 20,
+      "foto": null,
+      "nama": "Yunita Rustan",
+      "timestamp": {
+        "seconds": 1768919339,
+        "nanoseconds": 385000000
+      }
+    },
+    {
+      "id": "TNoLUY0FmLffApwO1YEy",
+      "jabatan": "Anggota",
+      "initial": "F",
+      "timestamp": {
+        "seconds": 1768919432,
+        "nanoseconds": 161000000
+      },
+      "foto": "https://res.cloudinary.com/doa7ccgyl/image/upload/v1768919430/cry6yyxyhgesiebqmgcl.jpg",
+      "urutan": 21,
+      "nama": "A. Muh Ferdi Herdiansyah"
+    },
+    {
+      "id": "JBD8PpOrYowNvngYz8Eh",
+      "urutan": 22,
+      "initial": "R",
+      "foto": "https://res.cloudinary.com/doa7ccgyl/image/upload/v1768919602/oky5geitiwiifxtxendo.jpg",
+      "jabatan": "Anggota",
+      "nama": "Rival dahri",
+      "timestamp": {
+        "seconds": 1768919603,
+        "nanoseconds": 696000000
+      }
+    },
+    {
+      "id": "N6UfC40OVSZevMImI9Ca",
+      "initial": "A",
+      "nama": "Muhammad Ali Rasya",
+      "timestamp": {
+        "seconds": 1769001381,
+        "nanoseconds": 752000000
+      },
+      "urutan": 23,
+      "jabatan": "Anggota",
+      "foto": "https://res.cloudinary.com/doa7ccgyl/image/upload/v1769001381/ixcuocntkzt24hi4ic8w.jpg"
+    }
+  ],
+  "generatedAt": "2026-01-21T13:49:27.874Z",
+  "prestasiData": [],
+  "tugasData": [],
+  "jadwalData": [
+    {
+      "id": "ZHNt5tERWCBahD9DitRl",
+      "mode": "regular",
+      "matkul": "Pemrograman ",
+      "dosen": "Pak wildan",
+      "ruangan": "5",
+      "timestamp": {
+        "seconds": 1768899013,
+        "nanoseconds": 344000000
+      },
+      "time": "09.40 - 11.00",
+      "hari": "Senin"
+    }
+  ],
+  "jadwalUTS": [
+    {
+      "id": "uGr7c6n8k0jO8cSibVhm",
+      "mode": "uts",
+      "hari": "Selasa",
+      "matkul": "Anu",
+      "dosen": "Pak wil",
+      "time": "10.00 - 11.00",
+      "ruangan": "6",
+      "timestamp": {
+        "seconds": 1768910707,
+        "nanoseconds": 346000000
+      }
+    }
+  ],
+  "jadwalUAS": []
+};
+
+// Untuk kompatibilitas dengan kode lama
+const prestasiData = DATA.prestasi || [];
+const tugasData = DATA.tugas || [];
+const jadwalData = DATA.jadwalData || [];
+const jadwalUTS = DATA.jadwalUTS || [];
+const jadwalUAS = DATA.jadwalUAS || [];
+
+// Export untuk module jika diperlukan
+if (typeof module !== 'undefined' && module.exports) {
+  module.exports = { DATA, prestasiData, tugasData, jadwalData, jadwalUTS, jadwalUAS };
+}
