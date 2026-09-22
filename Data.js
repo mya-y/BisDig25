@@ -1516,3 +1516,5 @@ const jadwalUAS = DATA.jadwalUAS || [];
 if (typeof module !== 'undefined' && module.exports) {
   module.exports = { DATA, prestasiData, tugasData, jadwalData, jadwalUTS, jadwalUAS };
 }
+
+window.DATA = DATA;
