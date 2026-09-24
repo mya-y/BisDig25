@@ -1,6 +1,6 @@
 // js/firebase-config.js
 import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js';
-import { getFirestore, collection, addDoc, getDocs, deleteDoc, doc, query, orderBy, serverTimestamp } from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js';
+import { getFirestore, collection, addDoc, getDocs, getDoc, updateDoc, deleteDoc, doc, query, orderBy, serverTimestamp } from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js';
 
 // Firebase Config
 const firebaseConfig = {
@@ -22,7 +22,7 @@ const CLOUD_PRESET = 'Web_kelas-bisdig25';
 
 // Make available globally
 window.db = db;
-window.firestore = { collection, addDoc, getDocs, deleteDoc, doc, query, orderBy, serverTimestamp };
+window.firestore = { collection, addDoc, getDocs, getDoc, updateDoc, deleteDoc, doc, query, orderBy, serverTimestamp };
 window.CLOUD_NAME = CLOUD_NAME;
 window.CLOUD_PRESET = CLOUD_PRESET;
 
