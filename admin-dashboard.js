@@ -5,6 +5,18 @@
 // ============================================
 let today = new Date().toISOString().split('T')[0];
 
+// Menyimpan collection & id dokumen yang lagi diedit (null = mode tambah baru)
+let editState = { collection: null, id: null };
+
+// Konfigurasi tiap modal: dipakai buat ganti judul modal & reset state pas ditutup
+const MODAL_CONFIG = {
+  modalGaleri:   { collection: 'galeri',   addTitle: 'Tambah Galeri',   editTitle: 'Edit Galeri',   fileInput: 'gFile', fileRequired: true },
+  modalJadwal:   { collection: 'jadwal',   addTitle: 'Tambah Jadwal',   editTitle: 'Edit Jadwal',   fileInput: null,    fileRequired: false },
+  modalTugas:    { collection: 'tugas',    addTitle: 'Tambah Tugas',    editTitle: 'Edit Tugas',    fileInput: null,    fileRequired: false },
+  modalPrestasi: { collection: 'prestasi', addTitle: 'Tambah Prestasi', editTitle: 'Edit Prestasi', fileInput: 'pFile', fileRequired: false },
+  modalStruktur: { collection: 'struktur', addTitle: 'Tambah Anggota',  editTitle: 'Edit Anggota',  fileInput: 'sFile', fileRequired: false }
+};
+
 // ============================================
 // UTILITY FUNCTIONS
 // ============================================
@@ -60,6 +72,20 @@ function hideModal(id) {
         input.value = today;
       }
     });
+    
+    // Reset mode edit -> balik ke mode tambah baru
+    const config = MODAL_CONFIG[id];
+    if (config) {
+      if (editState.collection === config.collection) {
+        editState = { collection: null, id: null };
+      }
+      const titleEl = modal.querySelector('.modal-header h3');
+      if (titleEl) titleEl.textContent = config.addTitle;
+      if (config.fileInput) {
+        const fileEl = document.getElementById(config.fileInput);
+        if (fileEl) fileEl.required = config.fileRequired;
+      }
+    }
   }
 }
 
@@ -448,6 +474,7 @@ async function loadSectionData(section) {
             <div class="data-item-header">
               <div class="data-item-title">${data.title || 'Tanpa judul'}</div>
               <div class="data-item-actions">
+                <button class="btn-icon" onclick="editItem('galeri', '${doc.id}')">✏️</button>
                 <button class="btn-icon" onclick="deleteItem('galeri', '${doc.id}')">🗑️</button>
               </div>
             </div>
@@ -476,6 +503,7 @@ async function loadSectionData(section) {
             <div class="data-item-header">
               <div class="data-item-title">${data.matkul || 'Tanpa mata kuliah'}</div>
               <div class="data-item-actions">
+                <button class="btn-icon" onclick="editItem('jadwal', '${doc.id}')">✏️</button>
                 <button class="btn-icon" onclick="deleteItem('jadwal', '${doc.id}')">🗑️</button>
               </div>
             </div>
@@ -501,6 +529,7 @@ async function loadSectionData(section) {
             <div class="data-item-header">
               <div class="data-item-title">${data.icon || '📝'} ${data.title || 'Tanpa judul'}</div>
               <div class="data-item-actions">
+                <button class="btn-icon" onclick="editItem('tugas', '${doc.id}')">✏️</button>
                 <button class="btn-icon" onclick="deleteItem('tugas', '${doc.id}')">🗑️</button>
               </div>
             </div>
@@ -528,6 +557,7 @@ async function loadSectionData(section) {
             <div class="data-item-header">
               <div class="data-item-title">${badge} ${data.title || 'Tanpa judul'}</div>
               <div class="data-item-actions">
+                <button class="btn-icon" onclick="editItem('prestasi', '${doc.id}')">✏️</button>
                 <button class="btn-icon" onclick="deleteItem('prestasi', '${doc.id}')">🗑️</button>
               </div>
             </div>
@@ -536,512 +566,4 @@ async function loadSectionData(section) {
             </div>
             ${data.caption ? `<p style="margin: 10px 0;">${data.caption}</p>` : ''}
             ${data.url ? `<div style="margin-top: 10px;">
-              <a href="${data.url}" target="_blank" style="color: #2563eb; font-size: 14px;">🔗 Lihat foto</a>
-            </div>` : ''}
-          </div>
-        `;
-      }).join('');
-    }
-    else if (section === 'struktur') {
-      html = docs.map(doc => {
-        const data = doc.data();
-        return `
-          <div class="data-item">
-            <div class="data-item-header">
-              <div class="data-item-title">${data.nama || 'Tanpa nama'}</div>
-              <div class="data-item-actions">
-                <button class="btn-icon" onclick="deleteItem('struktur', '${doc.id}')">🗑️</button>
-              </div>
-            </div>
-            <div style="color: #64748b; font-size: 14px;">
-              ${data.jabatan || '-'}<br>
-              ${data.initial ? `Initial: <strong>${data.initial}</strong>` : ''}<br>
-              Urutan: ${data.urutan || 999}
-            </div>
-          </div>
-        `;
-      }).join('');
-    }
-    
-    container.innerHTML = html;
-    console.log(`✅ ${section} data loaded successfully`);
-    
-  } catch (error) {
-    console.error(`❌ Error loading ${section}:`, error);
-    container.innerHTML = `<p class="error">Error memuat data: ${error.message}</p>`;
-  }
-}
-
-function getPrestasiBadge(title) {
-  if (!title) return '🏆';
-  const lower = title.toLowerCase();
-  if (lower.includes('juara 1') || lower.includes('pertama') || lower.includes('1st')) return '🥇';
-  if (lower.includes('juara 2') || lower.includes('kedua') || lower.includes('2nd')) return '🥈';
-  if (lower.includes('juara 3') || lower.includes('ketiga') || lower.includes('3rd')) return '🥉';
-  if (lower.includes('harapan')) return '🎖️';
-  if (lower.includes('lomba') || lower.includes('kompetisi')) return '🏅';
-  if (lower.includes('akademik')) return '📚';
-  return '🏆';
-}
-
-// ============================================
-// FORM HANDLERS
-// ============================================
-
-async function handleGaleriSubmit() {
-  const title = document.getElementById('gTitle').value;
-  const fileInput = document.getElementById('gFile');
-  const tanggal = document.getElementById('gTanggal').value || today;
-  
-  // Validasi
-  if (!title || !title.trim()) {
-    alert('❌ Judul harus diisi!');
-    return;
-  }
-  
-  if (!fileInput.files[0]) {
-    alert('❌ Pilih file foto/video terlebih dahulu!');
-    return;
-  }
-  
-  const file = fileInput.files[0];
-  if (file.size > 10 * 1024 * 1024) {
-    alert('❌ Ukuran file terlalu besar! Maksimal 10MB.');
-    return;
-  }
-  
-  showLoading('Menyimpan galeri...');
-  
-  try {
-    // 1. Upload ke Cloudinary
-    const url = await uploadToCloudinary(file);
-    
-    // 2. Simpan ke Firestore
-    await window.firestore.addDoc(window.firestore.collection(window.db, 'galeri'), {
-      title: title.trim(),
-      caption: document.getElementById('gCaption').value.trim(),
-      category: document.getElementById('gCategory').value,
-      url: url,
-      type: file.type.startsWith('video') ? 'video' : 'image',
-      tanggal: tanggal,
-      timestamp: window.firestore.serverTimestamp()
-    });
-    
-    alert('✅ Galeri berhasil ditambahkan!');
-    hideModal('modalGaleri');
-    
-    // Refresh data
-    await loadDashboardStats();
-    await loadRecentActivity();
-    loadSectionData('galeri');
-    
-  } catch (error) {
-    console.error('❌ Galeri submit error:', error);
-    alert(`❌ Gagal: ${error.message}`);
-  } finally {
-    hideLoading();
-  }
-}
-
-async function handleJadwalSubmit() {
-  const hari = document.getElementById('jHari').value;
-  const matkul = document.getElementById('jMatkul').value;
-  const time = document.getElementById('jTime').value;
-  
-  if (!hari) {
-    alert('❌ Pilih hari terlebih dahulu!');
-    return;
-  }
-  
-  if (!matkul || !matkul.trim()) {
-    alert('❌ Mata kuliah harus diisi!');
-    return;
-  }
-  
-  if (!time || !time.trim()) {
-    alert('❌ Waktu harus diisi!');
-    return;
-  }
-  
-  showLoading('Menyimpan jadwal...');
-  
-  try {
-    await window.firestore.addDoc(window.firestore.collection(window.db, 'jadwal'), {
-      hari: hari,
-      matkul: matkul.trim(),
-      time: time.trim(),
-      ruangan: document.getElementById('jRuangan').value.trim() || '-',
-      dosen: document.getElementById('jDosen').value.trim() || '-',
-      mode: document.getElementById('jMode').value,
-      timestamp: window.firestore.serverTimestamp()
-    });
-    
-    alert('✅ Jadwal berhasil ditambahkan!');
-    hideModal('modalJadwal');
-    
-    await loadDashboardStats();
-    await loadRecentActivity();
-    loadSectionData('jadwal');
-    
-  } catch (error) {
-    console.error('❌ Jadwal submit error:', error);
-    alert(`❌ Gagal: ${error.message}`);
-  } finally {
-    hideLoading();
-  }
-}
-
-async function handleTugasSubmit() {
-  const title = document.getElementById('tTitle').value;
-  const matkul = document.getElementById('tMatkul').value;
-  const deadline = document.getElementById('tDeadline').value;
-  const driveLink = document.getElementById('tDriveLink').value;
-  
-  if (!title || !title.trim()) {
-    alert('❌ Judul tugas harus diisi!');
-    return;
-  }
-  
-  if (!matkul || !matkul.trim()) {
-    alert('❌ Mata kuliah harus diisi!');
-    return;
-  }
-  
-  if (!deadline || !deadline.trim()) {
-    alert('❌ Deadline harus diisi!');
-    return;
-  }
-  
-  if (!driveLink || !driveLink.trim() || !driveLink.includes('drive.google.com')) {
-    alert('❌ Link Google Drive harus valid!');
-    return;
-  }
-  
-  showLoading('Menyimpan tugas...');
-  
-  try {
-    await window.firestore.addDoc(window.firestore.collection(window.db, 'tugas'), {
-      title: title.trim(),
-      matkul: matkul.trim(),
-      deadline: deadline.trim(),
-      driveLink: driveLink.trim(),
-      icon: document.getElementById('tIcon').value.trim() || '📝',
-      status: document.getElementById('tStatus').value,
-      timestamp: window.firestore.serverTimestamp()
-    });
-    
-    alert('✅ Tugas berhasil ditambahkan!');
-    hideModal('modalTugas');
-    
-    await loadDashboardStats();
-    await loadRecentActivity();
-    loadSectionData('tugas');
-    
-  } catch (error) {
-    console.error('❌ Tugas submit error:', error);
-    alert(`❌ Gagal: ${error.message}`);
-  } finally {
-    hideLoading();
-  }
-}
-
-async function handlePrestasiSubmit() {
-  const title = document.getElementById('pTitle').value;
-  const tanggal = document.getElementById('pTanggal').value || today;
-  
-  if (!title || !title.trim()) {
-    alert('❌ Judul prestasi harus diisi!');
-    return;
-  }
-  
-  showLoading('Menyimpan prestasi...');
-  
-  try {
-    let url = null;
-    let type = null;
-    const fileInput = document.getElementById('pFile');
-    
-    if (fileInput.files[0]) {
-      const file = fileInput.files[0];
-      if (file.size > 10 * 1024 * 1024) {
-        alert('❌ Ukuran file terlalu besar! Maksimal 10MB.');
-        return;
-      }
-      url = await uploadToCloudinary(file);
-      type = file.type.startsWith('video') ? 'video' : 'image';
-    }
-    
-    await window.firestore.addDoc(window.firestore.collection(window.db, 'prestasi'), {
-      title: title.trim(),
-      caption: document.getElementById('pCaption').value.trim(),
-      tanggal: tanggal,
-      date: tanggal, // Backup field
-      url: url,
-      type: type,
-      timestamp: window.firestore.serverTimestamp()
-    });
-    
-    alert('✅ Prestasi berhasil ditambahkan!');
-    hideModal('modalPrestasi');
-    
-    await loadDashboardStats();
-    await loadRecentActivity();
-    loadSectionData('prestasi');
-    
-  } catch (error) {
-    console.error('❌ Prestasi submit error:', error);
-    alert(`❌ Gagal: ${error.message}`);
-  } finally {
-    hideLoading();
-  }
-}
-
-async function handleStrukturSubmit() {
-  const nama = document.getElementById('sNama').value;
-  const jabatan = document.getElementById('sJabatan').value;
-  const urutan = document.getElementById('sUrutan').value || 1;
-  
-  if (!nama || !nama.trim()) {
-    alert('❌ Nama harus diisi!');
-    return;
-  }
-  
-  if (!jabatan || !jabatan.trim()) {
-    alert('❌ Jabatan harus diisi!');
-    return;
-  }
-  
-  showLoading('Menyimpan anggota...');
-  
-  try {
-    let url = null;
-    const fileInput = document.getElementById('sFile');
-    
-    if (fileInput.files[0]) {
-      const file = fileInput.files[0];
-      if (file.size > 5 * 1024 * 1024) {
-        alert('❌ Ukuran file terlalu besar! Maksimal 5MB.');
-        return;
-      }
-      url = await uploadToCloudinary(file);
-    }
-    
-    await window.firestore.addDoc(window.firestore.collection(window.db, 'struktur'), {
-      nama: nama.trim(),
-      jabatan: jabatan.trim(),
-      initial: (document.getElementById('sInitial').value.trim().charAt(0) || nama.trim().charAt(0)).toUpperCase(),
-      urutan: parseInt(urutan),
-      foto: url,
-      timestamp: window.firestore.serverTimestamp()
-    });
-    
-    alert('✅ Anggota berhasil ditambahkan!');
-    hideModal('modalStruktur');
-    
-    await loadDashboardStats();
-    await loadRecentActivity();
-    loadSectionData('struktur');
-    
-  } catch (error) {
-    console.error('❌ Struktur submit error:', error);
-    alert(`❌ Gagal: ${error.message}`);
-  } finally {
-    hideLoading();
-  }
-}
-
-// ============================================
-// DELETE FUNCTION
-// ============================================
-
-async function deleteItem(collection, id) {
-  if (!confirm('Yakin ingin menghapus data ini?')) return;
-  
-  showLoading('Menghapus data...');
-  
-  try {
-    await window.firestore.deleteDoc(window.firestore.doc(window.db, collection, id));
-    alert('✅ Data berhasil dihapus!');
-    
-    await loadDashboardStats();
-    await loadRecentActivity();
-    loadSectionData(collection);
-    
-  } catch (error) {
-    console.error('❌ Delete error:', error);
-    alert(`❌ Gagal menghapus: ${error.message}`);
-  } finally {
-    hideLoading();
-  }
-}
-
-// ============================================
-// CLEANUP FUNCTIONS
-// ============================================
-
-async function cleanupGaleri() {
-  if (!confirm('Hapus semua data galeri yang rusak (tidak ada URL)?')) return;
-  
-  showLoading('Membersihkan data rusak...');
-  
-  try {
-    const snapshot = await window.firestore.getDocs(
-      window.firestore.collection(window.db, 'galeri')
-    );
-    
-    const failedDocs = snapshot.docs.filter(doc => {
-      const data = doc.data();
-      return !data.url || !data.url.startsWith('http');
-    });
-    
-    if (failedDocs.length === 0) {
-      alert('✅ Tidak ada data galeri rusak ditemukan.');
-      return;
-    }
-    
-    // Hapus semua
-    const deletePromises = failedDocs.map(doc => 
-      window.firestore.deleteDoc(window.firestore.doc(window.db, 'galeri', doc.id))
-    );
-    
-    await Promise.all(deletePromises);
-    
-    alert(`✅ Berhasil menghapus ${failedDocs.length} data galeri rusak.`);
-    
-    await loadDashboardStats();
-    await loadRecentActivity();
-    loadSectionData('galeri');
-    
-  } catch (error) {
-    console.error('❌ Cleanup error:', error);
-    alert(`❌ Gagal: ${error.message}`);
-  } finally {
-    hideLoading();
-  }
-}
-
-// ============================================
-// GENERATE DATA.JS
-// ============================================
-
-async function generateDataJS() {
-  showLoading('Mengambil data dari Firebase...');
-  const statusEl = document.getElementById('generate-status');
-  if (statusEl) {
-    statusEl.innerHTML = '';
-  }
-  
-  try {
-    // Ambil semua data
-    const collections = ['galeri', 'jadwal', 'tugas', 'prestasi', 'struktur'];
-    const promises = collections.map(col => 
-      window.firestore.getDocs(window.firestore.collection(window.db, col))
-    );
-    
-    const snapshots = await Promise.all(promises);
-    
-    // Filter galeri yang valid
-    const galeriValid = snapshots[0].docs.filter(doc => {
-      const data = doc.data();
-      return data.url && data.url.startsWith('http');
-    });
-    
-    // Konversi ke array
-    const galeri = galeriValid.map(doc => ({ id: doc.id, ...doc.data() }))
-      .sort((a, b) => new Date(b.tanggal || b.timestamp) - new Date(a.tanggal || a.timestamp));
-    
-    const jadwal = snapshots[1].docs.map(doc => ({ id: doc.id, ...doc.data() }));
-    const tugas = snapshots[2].docs.map(doc => ({ id: doc.id, ...doc.data() }));
-    const prestasi = snapshots[3].docs.map(doc => ({ id: doc.id, ...doc.data() }))
-      .sort((a, b) => new Date(b.tanggal || b.date || b.timestamp) - new Date(a.tanggal || a.date || a.timestamp));
-    
-    const struktur = snapshots[4].docs.map(doc => ({ id: doc.id, ...doc.data() }))
-      .sort((a, b) => (a.urutan || 999) - (b.urutan || 999));
-    
-    // Buat objek data
-    const dataObj = {
-      galeri: galeri,
-      jadwal: jadwal,
-      tugas: tugas,
-      prestasi: prestasi,
-      struktur: struktur,
-      generatedAt: new Date().toISOString(),
-      // Untuk kompatibilitas dengan kode lama
-      prestasiData: prestasi,
-      tugasData: tugas,
-      jadwalData: jadwal.filter(j => j.mode === 'regular'),
-      jadwalUTS: jadwal.filter(j => j.mode === 'uts'),
-      jadwalUAS: jadwal.filter(j => j.mode === 'uas')
-    };
-    
-    // Buat file JavaScript
-    const jsContent = `// ============================================
-// DATA.JS - Generated from Firebase
-// Generated: ${new Date().toLocaleString('id-ID')}
-// Total Data: Galeri(${galeri.length}), Jadwal(${jadwal.length}), Tugas(${tugas.length}), Prestasi(${prestasi.length}), Struktur(${struktur.length})
-// ============================================
-
-const DATA = ${JSON.stringify(dataObj, null, 2)};
-
-// Untuk kompatibilitas dengan kode lama
-const prestasiData = DATA.prestasi || [];
-const tugasData = DATA.tugas || [];
-const jadwalData = DATA.jadwalData || [];
-const jadwalUTS = DATA.jadwalUTS || [];
-const jadwalUAS = DATA.jadwalUAS || [];
-
-// Export untuk module jika diperlukan
-if (typeof module !== 'undefined' && module.exports) {
-  module.exports = { DATA, prestasiData, tugasData, jadwalData, jadwalUTS, jadwalUAS };
-}`;
-    
-    // Download file
-    const blob = new Blob([jsContent], { type: 'application/javascript' });
-    const url = URL.createObjectURL(blob);
-    const a = document.createElement('a');
-    a.href = url;
-    a.download = 'Data.js';
-    document.body.appendChild(a);
-    a.click();
-    document.body.removeChild(a);
-    URL.revokeObjectURL(url);
-    
-    if (statusEl) {
-      statusEl.innerHTML = `
-        <div style="background: rgba(16, 185, 129, 0.1); border: 1px solid #10b981; color: #10b981; padding: 15px; border-radius: 8px; margin-top: 20px;">
-          ✅ <strong>Data.js berhasil digenerate!</strong><br>
-          Total data: Galeri(${galeri.length}), Jadwal(${jadwal.length}), Tugas(${tugas.length})<br>
-          File telah didownload. Upload ke folder utama website.
-        </div>
-      `;
-    }
-    
-  } catch (error) {
-    console.error('❌ Generate error:', error);
-    if (statusEl) {
-      statusEl.innerHTML = `
-        <div style="background: rgba(239, 68, 68, 0.1); border: 1px solid #ef4444; color: #ef4444; padding: 15px; border-radius: 8px; margin-top: 20px;">
-          ❌ <strong>Error:</strong> ${error.message}
-        </div>
-      `;
-    }
-  } finally {
-    hideLoading();
-  }
-}
-
-// ============================================
-// MAKE FUNCTIONS GLOBALLY AVAILABLE
-// ============================================
-window.showModal = showModal;
-window.hideModal = hideModal;
-window.toggleSidebar = toggleSidebar;
-window.logout = logout;
-window.handleGaleriSubmit = handleGaleriSubmit;
-window.handleJadwalSubmit = handleJadwalSubmit;
-window.handleTugasSubmit = handleTugasSubmit;
-window.handlePrestasiSubmit = handlePrestasiSubmit;
-window.handleStrukturSubmit = handleStrukturSubmit;
-window.deleteItem = deleteItem;
-window.generateDataJS = generateDataJS;
-window.cleanupGaleri = cleanupGaleri;
+              <a href="${data.url}" target="_blank" style="color: #2563eb; font-size: 14
