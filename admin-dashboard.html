@@ -245,7 +245,12 @@
           <!-- Di section generate, sebelum tombol Generate & Download -->
           <button class="btn btn-warning" onclick="cleanupGaleri()" style="margin-bottom: 10px;">
             <span>🧹</span>
-            <span>Bersihkan Galeri Rusak</span>
+            <span>Bersihkan Galeri Rusak (URL invalid)</span>
+          </button>
+
+          <button class="btn btn-warning" onclick="cleanupOrphanData()" style="margin-bottom: 10px;">
+            <span>🔎</span>
+            <span>Cari Dokumen Tanpa Timestamp (semua koleksi)</span>
           </button>
           
           <button class="btn btn-success" onclick="generateDataJS()" style="margin-bottom: 20px;">
@@ -253,6 +258,7 @@
             <span>Generate & Download Data.js</span>
           </button>
           
+          <div id="orphan-results"></div>
           <div id="generate-status"></div>
         </div>
       </div>
